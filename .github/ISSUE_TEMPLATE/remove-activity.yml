@@ -1,0 +1,125 @@
+---
+name: 🗑️ Remover Atividade
+description: Remover uma atividade extracurricular do sistema
+title: "[REMOVER ATIVIDADE]: "
+labels: ["enhancement", "activity", "copilot-assignable"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🗑️ Solicitação de Remoção de Atividade
+        Use este formulário para solicitar a remoção de uma atividade do sistema.
+        **ATENÇÃO:** Esta ação pode afetar estudantes inscritos.
+        
+  - type: input
+    id: activity-name
+    attributes:
+      label: Nome da Atividade a Remover *
+      description: Nome exato da atividade que deve ser removida
+      placeholder: "Ex: Chess Club"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Motivo da Remoção *
+      description: Explique por que esta atividade deve ser removida
+      placeholder: "Ex: Atividade descontinuada devido à falta de participantes..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: handle-participants
+    attributes:
+      label: Como tratar estudantes inscritos? *
+      description: Escolha como lidar com os participantes atuais
+      options:
+        - Notificar estudantes antes de remover (recomendado)
+        - Remover imediatamente sem notificação
+        - Transferir para outra atividade similar
+    validations:
+      required: true
+
+  - type: input
+    id: alternative-activity
+    attributes:
+      label: Atividade Alternativa
+      description: Se escolheu "transferir", especifique o nome da atividade alternativa
+      placeholder: "Ex: Advanced Chess Club"
+
+  - type: dropdown
+    id: removal-type
+    attributes:
+      label: Tipo de Remoção *
+      description: Remover permanentemente ou apenas desativar?
+      options:
+        - Remover permanentemente do banco de dados
+        - Desativar (manter histórico, ocultar da interface)
+    validations:
+      required: true
+
+  - type: input
+    id: effective-date
+    attributes:
+      label: Data Efetiva
+      description: Quando a remoção deve ser efetiva? (Deixe em branco para imediato)
+      placeholder: "Ex: 2024-12-31"
+
+  - type: textarea
+    id: notification-message
+    attributes:
+      label: Mensagem de Notificação
+      description: Se os estudantes devem ser notificados, forneça a mensagem
+      placeholder: "Ex: A atividade Chess Club será descontinuada a partir de..."
+
+  - type: checkboxes
+    id: pre-removal-checks
+    attributes:
+      label: Verificações Pré-Remoção *
+      description: Confirme que você considerou estes pontos
+      options:
+        - label: Verifiquei o número atual de participantes inscritos
+        - label: Informei os estudantes e/ou pais sobre a remoção
+        - label: Documentei o motivo da remoção para registros escolares
+        - label: Considerei oferecer atividades alternativas
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Critérios de Aceitação
+      description: Marque quando o agente completar estas tarefas
+      options:
+        - label: Atividade removida ou desativada do banco de dados
+        - label: Atividade não aparece mais na interface web
+        - label: Participantes tratados conforme especificado
+        - label: Logs de auditoria registram a remoção
+        - label: Testes verificam que a atividade não existe mais
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📝 Notas para o Agente de Codificação
+        
+        **Dicas de Implementação:**
+        - Use `ActivityRepository.delete()` para remoção permanente
+        - Para desativação, adicione um campo `active` ou `status` se não existir
+        - Considere criar um backup antes de remover
+        - Se houver participantes, valide a estratégia de tratamento
+        - Registre a ação em logs para auditoria
+        - Execute testes: `mvn test`
+        
+        **Arquivos Relevantes:**
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/entities/Activity.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/repositories/ActivityRepository.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/application/usecases/ActivityUseCase.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/infrastructure/persistence/ActivityRepositoryImpl.java`
+        
+        **Considerações de Segurança:**
+        - Verifique permissões do professor solicitante
+        - Mantenha histórico de atividades removidas para compliance
+        - Considere implicações de LGPD/GDPR para dados dos participantes

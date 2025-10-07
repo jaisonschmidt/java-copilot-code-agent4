@@ -1,0 +1,146 @@
+---
+name: 👨‍🏫 Gerenciar Conta de Professor
+description: Adicionar, modificar ou remover conta de professor
+title: "[PROFESSOR]: "
+labels: ["enhancement", "teacher", "copilot-assignable"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 👨‍🏫 Gerenciamento de Conta de Professor
+        Use este formulário para solicitar mudanças em contas de professores.
+        
+  - type: dropdown
+    id: action-type
+    attributes:
+      label: Tipo de Ação *
+      description: O que você deseja fazer?
+      options:
+        - Adicionar novo professor
+        - Modificar professor existente
+        - Remover professor
+        - Alterar permissões/role
+    validations:
+      required: true
+
+  - type: input
+    id: teacher-username
+    attributes:
+      label: Username do Professor *
+      description: Username único para o professor (formato recomendado teacher.sobrenome)
+      placeholder: "Ex: teacher.silva"
+    validations:
+      required: true
+
+  - type: input
+    id: display-name
+    attributes:
+      label: Nome para Exibição *
+      description: Nome completo do professor que aparecerá na interface
+      placeholder: "Ex: Prof. João Silva"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Função/Role *
+      description: Nível de acesso do professor
+      options:
+        - TEACHER (Professor padrão)
+        - ADMIN (Administrador)
+    validations:
+      required: true
+
+  - type: textarea
+    id: responsibilities
+    attributes:
+      label: Responsabilidades
+      description: Quais atividades este professor irá gerenciar?
+      placeholder: "Ex: Responsável pelo Clube de Arte e Drama Club"
+
+  - type: input
+    id: contact-email
+    attributes:
+      label: Email de Contato
+      description: Email do professor (opcional, para notificações)
+      placeholder: "Ex: joao.silva@mergington.edu"
+
+  - type: dropdown
+    id: initial-password
+    attributes:
+      label: Senha Inicial *
+      description: Como gerar a senha inicial? (para novos professores)
+      options:
+        - Gerar senha aleatória segura (recomendado)
+        - Usar senha temporária padrão (professor deve mudar no primeiro login)
+        - Especificar senha customizada (menos seguro)
+    validations:
+      required: true
+
+  - type: textarea
+    id: modification-details
+    attributes:
+      label: Detalhes da Modificação
+      description: Se estiver modificando ou removendo, explique o que deve mudar
+      placeholder: "Ex: Alterar role de TEACHER para ADMIN porque..."
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Motivo/Justificativa *
+      description: Por que esta mudança é necessária?
+      placeholder: "Ex: Novo professor contratado para gerenciar atividades de tecnologia..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: security-checks
+    attributes:
+      label: Verificações de Segurança
+      description: Confirme os seguintes pontos
+      options:
+        - label: Tenho autorização para fazer esta mudança
+        - label: Verifiquei que o username não está em uso (para novos professores)
+        - label: Compreendo as implicações de segurança da role escolhida
+        - label: Seguirei as políticas de senha da escola
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Critérios de Aceitação
+      description: Marque quando o agente completar estas tarefas
+      options:
+        - label: Conta criada/modificada/removida no banco de dados
+        - label: Senha criptografada com Argon2
+        - label: Professor pode fazer login (para novas contas/modificações)
+        - label: Permissões funcionam conforme role especificada
+        - label: Testes unitários passam
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📝 Notas para o Agente de Codificação
+        
+        **Dicas de Implementação:**
+        - Use migração Mongock para adicionar professores permanentes
+        - Senhas devem ser encriptadas com Argon2 via `PasswordConfig`
+        - Username é o @Id na entidade Teacher
+        - Valide que username é único antes de criar
+        - Role default é TEACHER se não especificado
+        - Execute testes: `mvn test`
+        
+        **Arquivos Relevantes:**
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/entities/Teacher.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/infrastructure/migrations/`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/infrastructure/config/PasswordConfig.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/repositories/TeacherRepository.java`
+        
+        **Considerações de Segurança:**
+        - NUNCA commite senhas em texto plano
+        - Use variáveis de ambiente para senhas iniciais
+        - Argon2 deve ser usado para hash de senha
+        - Role ADMIN tem permissões elevadas - use com cuidado
+        - Implemente rotação de senha temporária no primeiro login

@@ -1,0 +1,170 @@
+---
+name: ✨ Solicitar Nova Funcionalidade
+description: Sugerir uma nova funcionalidade ou melhoria para o sistema
+title: "[FEATURE]: "
+labels: ["enhancement", "feature-request", "copilot-assignable"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ✨ Solicitação de Nova Funcionalidade
+        Use este formulário para sugerir novas funcionalidades para o sistema.
+        
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Descrição da Funcionalidade *
+      description: Descreva detalhadamente a funcionalidade desejada
+      placeholder: "Ex: Gostaria de poder exportar a lista de participantes de cada atividade para um arquivo Excel..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-solving
+    attributes:
+      label: Problema que Resolve *
+      description: Que problema ou necessidade esta funcionalidade atende?
+      placeholder: "Ex: Atualmente, preciso copiar manualmente os dados para criar relatórios mensais..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Solução Proposta *
+      description: Como você imagina que esta funcionalidade deveria funcionar?
+      placeholder: "Ex: Um botão 'Exportar' em cada atividade que gera um arquivo Excel com nome, email e data de inscrição..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Categoria da Funcionalidade *
+      description: Qual área do sistema esta funcionalidade afeta?
+      options:
+        - Gestão de Atividades
+        - Gestão de Estudantes/Inscrições
+        - Relatórios e Exportação
+        - Autenticação e Segurança
+        - Interface de Usuário
+        - Notificações
+        - Busca e Filtros
+        - API/Integrações
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridade *
+      description: Qual a prioridade desta funcionalidade?
+      options:
+        - Alta - Necessária para operações diárias
+        - Média - Melhoraria significativamente o trabalho
+        - Baixa - Nice to have
+    validations:
+      required: true
+
+  - type: textarea
+    id: user-stories
+    attributes:
+      label: Histórias de Usuário
+      description: Descreva casos de uso específicos (Como [role], eu quero [ação] para [benefício])
+      placeholder: |
+        Como professor, eu quero exportar listas de participantes para poder compartilhar com a administração.
+        Como administrador, eu quero ver estatísticas de participação para planejar recursos.
+      value: |
+        Como [role], eu quero [ação] para [benefício].
+
+  - type: textarea
+    id: acceptance-criteria-desc
+    attributes:
+      label: Critérios de Aceitação Detalhados *
+      description: Liste especificamente o que deve funcionar quando a funcionalidade estiver pronta
+      placeholder: |
+        - Botão "Exportar" visível em cada card de atividade
+        - Arquivo Excel gerado com colunas: Nome, Email, Data de Inscrição
+        - Exportação inclui todos os participantes da atividade
+        - Arquivo nomeado como: [NomeAtividade]_Participantes_[Data].xlsx
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: Você considerou outras soluções? Quais?
+      placeholder: "Ex: Considerei exportar para CSV, mas Excel é mais conveniente para nossa equipe..."
+
+  - type: textarea
+    id: technical-suggestions
+    attributes:
+      label: Sugestões Técnicas
+      description: Se você tem ideias sobre como implementar, compartilhe aqui
+      placeholder: "Ex: Poderia usar a biblioteca Apache POI para gerar Excel..."
+
+  - type: checkboxes
+    id: impact-analysis
+    attributes:
+      label: Análise de Impacto
+      description: Considere o impacto desta funcionalidade
+      options:
+        - label: Requer mudanças no banco de dados
+        - label: Requer mudanças na interface web
+        - label: Requer mudanças na API/backend
+        - label: Pode afetar performance do sistema
+        - label: Requer nova biblioteca/dependência
+        - label: Pode ter implicações de segurança
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups ou Exemplos
+      description: Se tiver, adicione mockups, wireframes ou exemplos de sistemas similares
+      placeholder: "Cole imagens ou links aqui..."
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Critérios de Aceitação (Checklist)
+      description: Marque quando o agente completar estas tarefas
+      options:
+        - label: Funcionalidade implementada conforme especificação
+        - label: Interface de usuário intuitiva e consistente
+        - label: Testes unitários e de integração criados
+        - label: Documentação atualizada
+        - label: Performance verificada (se aplicável)
+        - label: Segurança validada (se aplicável)
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📝 Notas para o Agente de Codificação
+        
+        **Abordagem de Implementação:**
+        1. Analise os requisitos e quebre em tarefas menores
+        2. Identifique arquivos e camadas que precisam mudanças
+        3. Siga a Clean Architecture existente:
+           - Novos casos de uso em `application/usecases/`
+           - Novos endpoints em `presentation/controllers/`
+           - Novas entidades/value objects em `domain/`
+           - Novas implementações em `infrastructure/`
+        4. Mantenha consistência com padrões existentes
+        5. Adicione testes em todas as camadas
+        6. Execute: `mvn clean install`
+        
+        **Considerações:**
+        - Siga princípios SOLID
+        - Mantenha dependency flow: domain ← application ← infrastructure
+        - Use DTOs para comunicação entre camadas
+        - Valide dados em todas as camadas
+        - Documente código complexo
+        
+        **Arquivos para Referência:**
+        - Estrutura em `docs/README.md`
+        - Exemplos existentes em cada camada
+        - Testes existentes em `src/test/`

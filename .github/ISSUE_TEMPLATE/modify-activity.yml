@@ -1,0 +1,151 @@
+---
+name: ✏️ Modificar Atividade Existente
+description: Modificar detalhes de uma atividade extracurricular existente
+title: "[MODIFICAR ATIVIDADE]: "
+labels: ["enhancement", "activity", "copilot-assignable"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ✏️ Solicitação de Modificação de Atividade
+        Use este formulário para solicitar mudanças em uma atividade existente.
+        Campos marcados com * são obrigatórios.
+        
+  - type: input
+    id: activity-name
+    attributes:
+      label: Nome da Atividade a Modificar *
+      description: Nome exato da atividade existente que deve ser modificada
+      placeholder: "Ex: Chess Club"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: fields-to-modify
+    attributes:
+      label: O que deseja modificar? *
+      description: Selecione todos os campos que devem ser alterados
+      options:
+        - label: Descrição
+        - label: Horário (dias/horas)
+        - label: Capacidade máxima
+        - label: Tipo/Categoria
+        - label: Professor responsável
+
+  - type: textarea
+    id: new-description
+    attributes:
+      label: Nova Descrição
+      description: Se estiver modificando a descrição, forneça o novo texto completo aqui
+      placeholder: "Nova descrição da atividade..."
+
+  - type: checkboxes
+    id: new-days
+    attributes:
+      label: Novos Dias da Semana
+      description: Se estiver modificando os dias, selecione os novos dias
+      options:
+        - label: Segunda-feira (Monday)
+        - label: Terça-feira (Tuesday)
+        - label: Quarta-feira (Wednesday)
+        - label: Quinta-feira (Thursday)
+        - label: Sexta-feira (Friday)
+        - label: Sábado (Saturday)
+        - label: Domingo (Sunday)
+
+  - type: input
+    id: new-start-time
+    attributes:
+      label: Novo Horário de Início
+      description: Se estiver modificando o horário, forneça o novo horário de início (HH:MM)
+      placeholder: "Ex: 16:00"
+
+  - type: input
+    id: new-end-time
+    attributes:
+      label: Novo Horário de Término
+      description: Se estiver modificando o horário, forneça o novo horário de término (HH:MM)
+      placeholder: "Ex: 18:00"
+
+  - type: input
+    id: new-capacity
+    attributes:
+      label: Nova Capacidade Máxima
+      description: Se estiver modificando a capacidade, forneça o novo número máximo de participantes
+      placeholder: "Ex: 20"
+
+  - type: dropdown
+    id: new-type
+    attributes:
+      label: Novo Tipo de Atividade
+      description: Se estiver modificando o tipo, selecione a nova categoria
+      options:
+        - ""
+        - SPORTS (Esportes)
+        - ARTS (Artes)
+        - MUSIC (Música)
+        - ACADEMIC (Acadêmico)
+        - TECHNOLOGY (Tecnologia)
+        - COMMUNITY (Comunidade/Serviço)
+        - OTHER (Outro)
+
+  - type: input
+    id: new-teacher
+    attributes:
+      label: Novo Professor Responsável
+      description: Se estiver modificando o responsável, forneça o username do novo professor
+      placeholder: "Ex: teacher.chen"
+
+  - type: textarea
+    id: reason
+    attributes:
+      label: Motivo da Modificação *
+      description: Explique por que essas mudanças são necessárias
+      placeholder: "Ex: Precisamos aumentar a capacidade devido à alta demanda..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: handle-participants
+    attributes:
+      label: Como tratar participantes inscritos? *
+      description: Se a modificação afetar a capacidade ou horário
+      options:
+        - Manter todos os participantes inscritos
+        - Notificar e pedir confirmação (manual)
+        - Remover inscrições e permitir nova inscrição
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Critérios de Aceitação
+      description: Marque quando o agente completar estas tarefas
+      options:
+        - label: Modificações aplicadas no banco de dados
+        - label: Interface web reflete as mudanças corretamente
+        - label: Participantes existentes tratados conforme especificado
+        - label: Filtros e buscas funcionam com os novos valores
+        - label: Testes unitários atualizados e passando
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📝 Notas para o Agente de Codificação
+        
+        **Dicas de Implementação:**
+        - Localize a atividade no banco de dados pelo nome (campo @Id)
+        - Use o repository pattern para atualizar: `ActivityRepository.save()`
+        - Se o nome mudar, considere implicações no ID (o nome é o @Id)
+        - Valide que mudanças não violam regras de negócio
+        - Se capacidade diminuir, valide contra participantes atuais
+        - Execute testes: `mvn test`
+        
+        **Arquivos Relevantes:**
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/entities/Activity.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/application/usecases/ActivityUseCase.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/repositories/ActivityRepository.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/infrastructure/persistence/ActivityRepositoryImpl.java`

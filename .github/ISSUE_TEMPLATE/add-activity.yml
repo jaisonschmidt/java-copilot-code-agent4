@@ -1,0 +1,135 @@
+---
+name: 🎓 Adicionar Nova Atividade Extracurricular
+description: Criar uma nova atividade extracurricular para os estudantes
+title: "[NOVA ATIVIDADE]: "
+labels: ["enhancement", "activity", "copilot-assignable"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🎓 Solicitação de Nova Atividade
+        Use este formulário para solicitar a criação de uma nova atividade extracurricular.
+        Todos os campos marcados com * são obrigatórios.
+        
+  - type: input
+    id: activity-name
+    attributes:
+      label: Nome da Atividade *
+      description: Nome único para a atividade (ex. "Chess Club", "Drama Club", "Programming Class")
+      placeholder: "Ex: Clube de Robótica"
+    validations:
+      required: true
+
+  - type: textarea
+    id: activity-description
+    attributes:
+      label: Descrição da Atividade *
+      description: Descreva detalhadamente o que os estudantes farão nesta atividade
+      placeholder: "Ex: Os estudantes aprenderão a construir e programar robôs usando LEGO Mindstorms..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: activity-type
+    attributes:
+      label: Tipo de Atividade *
+      description: Categoria da atividade
+      options:
+        - SPORTS (Esportes)
+        - ARTS (Artes)
+        - MUSIC (Música)
+        - ACADEMIC (Acadêmico)
+        - TECHNOLOGY (Tecnologia)
+        - COMMUNITY (Comunidade/Serviço)
+        - OTHER (Outro)
+    validations:
+      required: true
+
+  - type: input
+    id: max-participants
+    attributes:
+      label: Capacidade Máxima *
+      description: Número máximo de estudantes que podem participar
+      placeholder: "Ex: 15"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: days-of-week
+    attributes:
+      label: Dias da Semana *
+      description: Selecione os dias em que a atividade ocorre
+      options:
+        - label: Segunda-feira (Monday)
+        - label: Terça-feira (Tuesday)
+        - label: Quarta-feira (Wednesday)
+        - label: Quinta-feira (Thursday)
+        - label: Sexta-feira (Friday)
+        - label: Sábado (Saturday)
+        - label: Domingo (Sunday)
+
+  - type: input
+    id: start-time
+    attributes:
+      label: Horário de Início *
+      description: Horário de início no formato HH:MM (24 horas)
+      placeholder: "Ex: 15:30"
+    validations:
+      required: true
+
+  - type: input
+    id: end-time
+    attributes:
+      label: Horário de Término *
+      description: Horário de término no formato HH:MM (24 horas)
+      placeholder: "Ex: 17:00"
+    validations:
+      required: true
+
+  - type: input
+    id: responsible-teacher
+    attributes:
+      label: Professor Responsável *
+      description: Username do professor que será responsável pela atividade
+      placeholder: "Ex: teacher.rodriguez"
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Informações Adicionais
+      description: Qualquer outra informação relevante (materiais necessários, pré-requisitos, etc.)
+      placeholder: "Ex: Os estudantes precisam trazer seu próprio laptop..."
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Critérios de Aceitação
+      description: Marque quando o agente completar estas tarefas
+      options:
+        - label: Entidade Activity criada no banco de dados com todos os campos preenchidos
+        - label: Atividade aparece na listagem da interface web
+        - label: Filtros funcionam corretamente para a nova atividade
+        - label: Estudantes podem se inscrever na atividade
+        - label: Testes unitários passam para a nova atividade
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📝 Notas para o Agente de Codificação
+        
+        **Dicas de Implementação:**
+        - Adicione a atividade através da migração Mongock ou create um novo migration change unit
+        - Use o padrão existente em `V001_InitialDatabaseSetup.java`
+        - Certifique-se de que ScheduleDetails está corretamente configurado
+        - Valide todos os campos conforme as regras do domínio
+        - Execute testes após a implementação: `mvn test`
+        
+        **Arquivos Relevantes:**
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/entities/Activity.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/infrastructure/migrations/`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/valueobjects/ActivityType.java`
+        - `src/main/java/com/mergingtonhigh/schoolmanagement/domain/valueobjects/ScheduleDetails.java`

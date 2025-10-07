@@ -1,0 +1,198 @@
+---
+name: 📚 Melhorar Documentação
+description: Sugerir melhorias ou correções na documentação do sistema
+title: "[DOCS]: "
+labels: ["documentation", "copilot-assignable"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📚 Melhoria de Documentação
+        Use este formulário para solicitar melhorias na documentação do sistema.
+        
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Tipo de Documentação *
+      description: Que tipo de documentação precisa ser melhorada?
+      options:
+        - README - Documentação principal
+        - Guia de Instalação/Configuração
+        - Guia de Uso - Para Professores
+        - Documentação de API
+        - Comentários no Código
+        - Guia de Contribuição
+        - Arquitetura/Design
+        - Troubleshooting/FAQ
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: action-type
+    attributes:
+      label: Tipo de Ação *
+      description: O que precisa ser feito?
+      options:
+        - Adicionar nova documentação
+        - Corrigir/Atualizar documentação existente
+        - Melhorar clareza/organização
+        - Adicionar exemplos
+        - Traduzir documentação
+        - Remover documentação obsoleta
+    validations:
+      required: true
+
+  - type: textarea
+    id: current-issue
+    attributes:
+      label: Problema Atual *
+      description: Qual o problema com a documentação atual?
+      placeholder: "Ex: O README não explica como configurar as variáveis de ambiente para produção..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-improvement
+    attributes:
+      label: Melhoria Proposta *
+      description: O que deveria ser adicionado ou mudado?
+      placeholder: "Ex: Adicionar seção 'Configuração para Produção' com exemplo de .env e explicação de cada variável..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target-audience
+    attributes:
+      label: Público-Alvo *
+      description: Para quem esta documentação é direcionada?
+      options:
+        - Professores/Usuários finais
+        - Desenvolvedores/Contribuidores
+        - Administradores de Sistema
+        - Todos
+    validations:
+      required: true
+
+  - type: input
+    id: file-location
+    attributes:
+      label: Localização do Arquivo
+      description: Onde a documentação está ou deveria estar?
+      placeholder: "Ex: docs/README.md ou criar novo: docs/INSTALLATION.md"
+
+  - type: textarea
+    id: content-suggestion
+    attributes:
+      label: Sugestão de Conteúdo
+      description: Se possível, escreva ou esboce o conteúdo que deveria ser adicionado
+      placeholder: |
+        ## Configuração para Produção
+        
+        Para ambiente de produção, configure as seguintes variáveis:
+        
+        ```
+        MONGODB_URI=mongodb://...
+        ```
+      render: markdown
+
+  - type: checkboxes
+    id: documentation-elements
+    attributes:
+      label: Elementos de Documentação Necessários
+      description: Quais elementos devem ser incluídos?
+      options:
+        - label: Exemplos de código
+        - label: Capturas de tela/Diagramas
+        - label: Comandos passo a passo
+        - label: Links para recursos externos
+        - label: Tabelas de referência
+        - label: Avisos/Notas importantes
+        - label: FAQ
+
+  - type: textarea
+    id: why-important
+    attributes:
+      label: Por que é Importante? *
+      description: Por que esta documentação é necessária?
+      placeholder: "Ex: Novos professores têm dificuldade de entender como usar o sistema sem um guia passo a passo..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Prioridade *
+      description: Qual a urgência desta documentação?
+      options:
+        - Alta - Essencial para uso do sistema
+        - Média - Importante mas não bloqueante
+        - Baixa - Nice to have
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-issues
+    attributes:
+      label: Issues ou PRs Relacionados
+      description: Links para issues ou PRs relacionados
+      placeholder: "Ex: Relacionado a #123"
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Critérios de Aceitação
+      description: Marque quando o agente completar estas tarefas
+      options:
+        - label: Documentação escrita de forma clara e concisa
+        - label: Exemplos práticos incluídos quando aplicável
+        - label: Sem erros de digitação ou gramática
+        - label: Links funcionando corretamente
+        - label: Formatação markdown correta
+        - label: Screenshots ou diagramas adicionados se necessário
+        - label: Revisado por pelo menos uma pessoa
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📝 Notas para o Agente de Codificação
+        
+        **Localização de Documentação:**
+        - Documentação principal: `README.md` e `docs/README.md`
+        - Documentação de código: Comentários inline e JavaDoc
+        - Guias específicos: Criar em `docs/` se necessário
+        
+        **Estrutura de Documentação:**
+        ```
+        docs/
+        ├── README.md           # Documentação técnica completa
+        ├── USER_GUIDE.md       # Guia para professores (se criar)
+        ├── API.md              # Documentação de API (se criar)
+        ├── ARCHITECTURE.md     # Detalhes arquiteturais (se criar)
+        └── images/             # Screenshots e diagramas
+        ```
+        
+        **Boas Práticas:**
+        - Use markdown para formatação
+        - Seja claro, conciso e objetivo
+        - Inclua exemplos práticos
+        - Use blocos de código com syntax highlighting
+        - Adicione índice para documentos longos
+        - Mantenha consistência com documentação existente
+        - Use português correto (sistema é em português)
+        
+        **Elementos Úteis:**
+        - Emojis para seções (📦 🚀 🔧 📊 etc.)
+        - Blocos de código com linguagem especificada
+        - Tabelas para comparações ou referências
+        - Listas para passos ou requisitos
+        - Citações para avisos importantes
+        - Links para recursos externos quando relevante
+        
+        **Depois de Escrever:**
+        - Revise ortografia e gramática
+        - Valide links
+        - Teste comandos e exemplos
+        - Verifique formatação em preview

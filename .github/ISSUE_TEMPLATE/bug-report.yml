@@ -1,0 +1,170 @@
+---
+name: 🐛 Reportar Bug
+description: Reportar um problema ou erro no sistema
+title: "[BUG]: "
+labels: ["bug", "needs-triage", "copilot-assignable"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐛 Reportar Bug
+        Obrigado por ajudar a melhorar o sistema! Por favor, forneça o máximo de detalhes possível.
+        
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Descrição do Bug *
+      description: Descreva claramente o que está acontecendo de errado
+      placeholder: "Ex: Quando tento inscrever um estudante, recebo erro 500..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Passos para Reproduzir *
+      description: Liste os passos detalhados para reproduzir o problema
+      placeholder: |
+        1. Acesse a página de atividades
+        2. Clique em "Inscrever-se" na atividade "Chess Club"
+        3. Preencha o email do estudante
+        4. Clique em "Confirmar"
+        5. Observe o erro...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Comportamento Esperado *
+      description: O que deveria acontecer?
+      placeholder: "Ex: O estudante deveria ser inscrito e receber confirmação visual..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Comportamento Atual *
+      description: O que está acontecendo na realidade?
+      placeholder: "Ex: Aparece mensagem de erro e o estudante não é inscrito..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Gravidade do Bug *
+      description: Qual o impacto deste bug?
+      options:
+        - Crítico - Sistema inutilizável ou perda de dados
+        - Alto - Funcionalidade principal não funciona
+        - Médio - Funcionalidade funciona com workaround
+        - Baixo - Problema cosmético ou pequeno inconveniente
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Frequência *
+      description: Com que frequência este bug ocorre?
+      options:
+        - Sempre - 100% das vezes
+        - Frequente - Mais de 50% das vezes
+        - Ocasional - Menos de 50% das vezes
+        - Raro - Aconteceu apenas uma vez
+    validations:
+      required: true
+
+  - type: dropdown
+    id: affected-area
+    attributes:
+      label: Área Afetada *
+      description: Qual parte do sistema está com problema?
+      options:
+        - Interface Web (Frontend)
+        - Inscrições de Estudantes
+        - Listagem de Atividades
+        - Autenticação/Login
+        - Filtros e Busca
+        - Backend/API
+        - Banco de Dados
+        - Outro
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Navegador
+      description: Se for problema de interface, qual navegador?
+      options:
+        - ""
+        - Google Chrome
+        - Mozilla Firefox
+        - Safari
+        - Microsoft Edge
+        - Outro
+
+  - type: textarea
+    id: error-messages
+    attributes:
+      label: Mensagens de Erro
+      description: Copie e cole quaisquer mensagens de erro (da tela ou do console)
+      placeholder: "Ex: Error 500: Internal Server Error..."
+      render: text
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots ou Vídeos
+      description: Se aplicável, adicione screenshots ou vídeos do problema
+      placeholder: "Cole imagens aqui ou adicione links..."
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Contexto Adicional
+      description: Qualquer outra informação que possa ajudar
+      placeholder: "Ex: Isso começou a acontecer depois que..."
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Critérios de Aceitação
+      description: Marque quando o agente completar estas tarefas
+      options:
+        - label: Bug identificado e causa raiz encontrada
+        - label: Correção implementada
+        - label: Testes criados para prevenir regressão
+        - label: Verificado que a correção não quebra outras funcionalidades
+        - label: Documentação atualizada se necessário
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📝 Notas para o Agente de Codificação
+        
+        **Processo de Debug:**
+        1. Reproduza o bug seguindo os passos fornecidos
+        2. Analise logs da aplicação e do navegador (console)
+        3. Identifique a causa raiz no código
+        4. Implemente correção mínima e precisa
+        5. Crie testes para prevenir regressão
+        6. Verifique que a correção não introduz novos bugs
+        7. Execute: `mvn clean test`
+        
+        **Ferramentas Úteis:**
+        - Logs do Spring Boot
+        - Console do navegador (F12)
+        - Network tab para inspecionar requisições
+        - MongoDB logs se for problema de dados
+        
+        **Arquivos Comuns para Bug Fixes:**
+        - Controllers em `presentation/controllers/`
+        - Use cases em `application/usecases/`
+        - Entidades em `domain/entities/`
+        - Frontend em `src/main/resources/static/`
