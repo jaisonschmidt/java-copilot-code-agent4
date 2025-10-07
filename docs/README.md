@@ -6,6 +6,24 @@ Sistema de gestão de atividades extracurriculares desenvolvido com Spring Boot 
 
 O **School Management System** é uma aplicação web que permite o gerenciamento de atividades extracurriculares da Mergington High School. O sistema possibilita que professores administrem atividades e que estudantes se inscrevam nelas através de uma interface web intuitiva.
 
+## 📝 Solicitações de Mudança para Professores
+
+**Professores não precisam programar!** Este sistema utiliza [templates de issues estruturados](../.github/ISSUE_TEMPLATE_GUIDE.md) que permitem solicitar mudanças através de formulários simples.
+
+### Templates Disponíveis:
+- 🎓 **Adicionar Nova Atividade** - Criar novas atividades extracurriculares
+- ✏️ **Modificar Atividade** - Alterar atividades existentes
+- 🗑️ **Remover Atividade** - Desativar ou remover atividades
+- 👨‍🏫 **Gerenciar Professores** - Adicionar/modificar contas de professores
+- 🐛 **Reportar Bug** - Informar problemas no sistema
+- ✨ **Nova Funcionalidade** - Sugerir melhorias
+- 🎨 **Melhorias UI/UX** - Sugerir melhorias de interface
+- 📚 **Documentação** - Melhorar documentação
+
+**Como usar:** Vá para a [aba Issues](../../../issues/new/choose) e escolha o template apropriado. O agente de codificação GitHub Copilot pode ser designado automaticamente para processar sua solicitação!
+
+📖 **[Guia Completo de Templates](../.github/ISSUE_TEMPLATE_GUIDE.md)**
+
 ## 🏗️ Arquitetura
 
 ### Princípios Arquiteturais
