@@ -107,6 +107,33 @@ class ActivityTest {
         assertThrows(IllegalArgumentException.class, () -> activity.removeParticipant(studentEmail));
     }
 
+    @Test
+    void shouldCreateMangaManiacsActivity() {
+        // Arrange
+        ScheduleDetails schedule = new ScheduleDetails(
+                List.of("Tuesday"),
+                LocalTime.of(19, 0),
+                LocalTime.of(20, 30));
+
+        // Act
+        Activity mangaManiacs = new Activity(
+                "Manga Maniacs",
+                "Mergulhe no universo vibrante dos mangás! Descubra heróis épicos, vilões complexos e mundos imaginários. De Shonen a Shoujo, de aventuras ninja a dramas escolares - compartilhe suas séries favoritas, debata teorias e conecte-se com outros otakus!",
+                "Terças-feiras, 19:00 - 20:30",
+                schedule,
+                15,
+                ActivityType.ARTS);
+
+        // Assert
+        assertEquals("Manga Maniacs", mangaManiacs.getName());
+        assertEquals("Mergulhe no universo vibrante dos mangás! Descubra heróis épicos, vilões complexos e mundos imaginários. De Shonen a Shoujo, de aventuras ninja a dramas escolares - compartilhe suas séries favoritas, debata teorias e conecte-se com outros otakus!", 
+                     mangaManiacs.getDescription());
+        assertEquals(15, mangaManiacs.getMaxParticipants());
+        assertEquals(0, mangaManiacs.getCurrentParticipantCount());
+        assertTrue(mangaManiacs.canAddParticipant());
+        assertEquals(ActivityType.ARTS, mangaManiacs.getType());
+    }
+
     private Activity createTestActivity() {
         ScheduleDetails schedule = new ScheduleDetails(
                 List.of("Monday"),
